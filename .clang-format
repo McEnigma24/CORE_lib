@@ -12,7 +12,7 @@ ColumnLimit:     150
 AccessModifierOffset: -4
 AlwaysBreakTemplateDeclarations: true
 PointerAlignment: Left
-IndentWidth:     4
+IndentWidth:     2
 NamespaceIndentation: All
 AllowShortFunctionsOnASingleLine: All
 
