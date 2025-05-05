@@ -17,11 +17,11 @@ using namespace std;
 
 #define path_run_time_config "../run_time_config"
 
-#define var(x) cout << #x << " = " << x << '\n';
-#define varr(x) cout << #x << " = " << x << ' ';
-#define line(x) cout << x << '\n';
+#define var(x)   cout << #x << " = " << x << '\n';
+#define varr(x)  cout << #x << " = " << x << ' ';
+#define line(x)  cout << x << '\n';
 #define linee(x) cout << x << ' ';
-#define nline cout << '\n';
+#define nline    cout << '\n';
 
 typedef uint8_t u8;
 typedef uint16_t u16;
@@ -33,15 +33,15 @@ typedef int16_t i16;
 typedef int32_t i32;
 typedef int64_t i64;
 
-#define null nullptr
-#define pow2(x) ((x) * (x))
-#define pow3(x) ((x) * (x) * (x))
+#define null      nullptr
+#define pow2(x)   ((x) * (x))
+#define pow3(x)   ((x) * (x) * (x))
 #define base_0(x) (x - 1)
 
-#define c_init(x) x(_##x)
-#define cc_init(x) this->x = x;
+#define c_init(x)                   x(_##x)
+#define cc_init(x)                  this->x = x;
 #define member_assign(a, b, member) a.member = b.member;
-#define THIS_OTHER(x) this->x = other.x;
+#define THIS_OTHER(x)               this->x = other.x;
 
 #define sizeof_imp(x)                                                                                                                                \
     {                                                                                                                                                \
@@ -89,19 +89,30 @@ typedef int64_t i64;
     if (std::isnan(x)) { FATAL_ERROR("found it"); }
 
 #define SAFETY_CHECK(x) x;
-// #define SAFETY_CHECK(x) 
+// #define SAFETY_CHECK(x)
 
 #define delay_input std::this_thread::sleep_for(std::chrono::milliseconds(50));
-#define sleep(x) std::this_thread::sleep_for(std::chrono::milliseconds(x));
+#define sleep(x)    std::this_thread::sleep_for(std::chrono::milliseconds(x));
 
-#define time_stamp(x)                                                                                                  \
-    std::cout << "\nTIME_STAMP: " << setw(50) << left << x << right << " " << CORE::get_current_local_time() << " (+ " \
+#define time_stamp(x)                                                                                                                                \
+    std::cout << "\nTIME_STAMP: " << setw(50) << left << x << right << " " << CORE::get_current_local_time() << " (+ "                               \
               << CORE::calculate_time_difference() << ")\n";
 
 #define time_stamp_reset() CORE::calculate_time_difference();
 
-// #define time_stamp(x) 
-// #define time_stamp_reset(x) 
+// #define time_stamp(x)
+// #define time_stamp_reset(x)
+
+// CRAZY PREPROCESSOR MAGIC //
+#define GET_MACRO(_1, _2, _3, _4, _5, _6, NAME, ...) NAME
+
+#define NUM_2(x1, x2)                 x1##x2
+#define NUM_3(x1, x2, x3)             x1##x2##x3
+#define NUM_4(x1, x2, x3, x4)         x1##x2##x3##x4
+#define NUM_5(x1, x2, x3, x4, x5)     x1##x2##x3##x4##x5
+#define NUM_6(x1, x2, x3, x4, x5, x6) x1##x2##x3##x4##x5##x6
+
+#define NUM(...) GET_MACRO(__VA_ARGS__, NUM_6, NUM_5, NUM_4, NUM_3, NUM_2)(__VA_ARGS__)
 
 namespace CORE
 {
@@ -192,10 +203,7 @@ namespace CORE
         {
             auto it = std::find(vec.begin(), vec.end(), value);
 
-            if (it != vec.end())
-            {
-                vec.erase(it);
-            }
+            if (it != vec.end()) { vec.erase(it); }
         }
     }; // namespace vec
 };     // namespace CORE

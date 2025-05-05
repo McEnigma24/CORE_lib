@@ -21,8 +21,14 @@ int main(int argc, char* argv[])
     int num = 123456789;
     double num2 = 1234567.89123;
 
-    cout << CORE::format_number(num) << endl;
-    cout << CORE::format_number(num2) << endl;
+    var(CORE::format_number(num));
+    var(CORE::format_number(num2));
+
+    var(CORE::format_number(NUM(1, 000)));
+    var(CORE::format_number(NUM(1, 000, 000)));
+    var(CORE::format_number(NUM(1, 000, 000, 000)));
+    var(CORE::format_number(NUM(1, 000, 000, 000, 000)));
+    var(CORE::format_number(NUM(1, 000, 000, 000, 000, 000)));
 
     return 0;
 }
