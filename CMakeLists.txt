@@ -32,7 +32,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fopenmp -g -Wfatal-errors -Werror=unini
 
 set(CONST_TARGET_NAME "CORE")
 
-option(BUILD_LIBRARY "Build library instead of library executable" OFF) # default value - could be overwritten by provided FLAG
+option(BUILD_LIBRARY "Build library instead of executable" ON) # default value - could be overwritten by provided FLAG
 
 if(BUILD_LIBRARY)
     message(WARNING "Building library")
