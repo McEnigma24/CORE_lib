@@ -30,7 +30,7 @@ aux_source_directory(_test TEST_SOURCES)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fopenmp -g -Wfatal-errors -Werror=uninitialized -Werror=init-self -Werror=reorder")    # for normal coding
 # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fopenmp -O3 -march=native -w")                                                         # for release
 
-set(CONST_TARGET_NAME "CORE")
+set(CONST_TARGET_NAME "core")
 
 option(BUILD_LIBRARY "Build library instead of executable" ON) # default value - could be overwritten by provided FLAG
 
