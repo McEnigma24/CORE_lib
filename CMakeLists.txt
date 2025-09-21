@@ -20,6 +20,13 @@ aux_source_directory(_src/base TEST_SOURCES)
 list(FILTER TEST_SOURCES EXCLUDE REGEX ".*main\\.cpp")
 aux_source_directory(_test TEST_SOURCES)
 
+
+# MACRO FOR LOGS # - dont show the whole realpath to file
+
+string(LENGTH "${CMAKE_SOURCE_DIR}/" SOURCE_PATH_SIZE)
+add_definitions(-DSOURCE_PATH_SIZE=${SOURCE_PATH_SIZE})
+
+
 # COMPILER FLAGS #
 
 # https://docs.oracle.com/cd/E19957-01/806-3572/Rev.html
