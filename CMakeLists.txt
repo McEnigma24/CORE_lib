@@ -39,9 +39,9 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fopenmp -g -Wfatal-errors -Werror=unini
 
 set(CONST_TARGET_NAME "core")
 
-option(CORE_BUILD_LIBRARY "Build library instead of executable" ON) # default value - could be overwritten by provided FLAG
+option(CORE___BUILD_LIBRARY "Build library instead of executable" ON) # default value - could be overwritten by provided FLAG
 
-if(CORE_BUILD_LIBRARY)
+if(CORE___BUILD_LIBRARY)
     message(WARNING "Building library")
     
     set(TARGET_NAME "${CONST_TARGET_NAME}")
@@ -64,9 +64,9 @@ else()
     # )
 endif()
 
-option(CCORE_TEST_ACTIVE "Testing is active" OFF)  # default value - could be overwritten by provided FLAG
+option(CORE___TEST_ACTIVE "Testing is active" OFF)  # default value - could be overwritten by provided FLAG
 
-if(CCORE_TEST_ACTIVE)
+if(CORE___TEST_ACTIVE)
     message(WARNING "TESTING...")
     # Włączenie testów
     enable_testing()
