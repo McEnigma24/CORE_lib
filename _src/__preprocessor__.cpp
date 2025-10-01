@@ -66,17 +66,17 @@ namespace CORE
         if (milliseconds > 0 || show_all_other)
         {
             show_all_other = true;
-            oss << milliseconds << "mili ";
+            oss << milliseconds << "ms ";
         }
         if (microseconds > 0 || show_all_other)
         {
             show_all_other = true;
-            oss << microseconds << "micro ";
+            oss << microseconds << "us ";
         }
         if (nanoseconds > 0 || show_all_other)
         {
             show_all_other = true;
-            oss << nanoseconds << "nano ";
+            oss << nanoseconds << "ns ";
         }
         return oss.str();
     }
@@ -109,4 +109,4 @@ namespace CORE
         }
     }; // namespace str
 
-};     // namespace CORE
+}; // namespace CORE
