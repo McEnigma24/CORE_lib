@@ -1,6 +1,7 @@
 #pragma once
 #include <chrono>
 #include <cmath>
+#include <cstdint>
 #include <cstring>
 #include <fstream>
 #include <iomanip>
@@ -181,6 +182,26 @@ namespace CORE
 
             return formatted_integer;
         }
+    }
+
+    std::string humanReadableBytes(uint64_t bytes)
+    {
+        const char* suffixes[] = {"B", "KB", "MB", "GB", "TB", "PB", "EB"};
+        size_t suffixIndex = 0;
+        long double count = bytes;
+
+        // dopóki wartość jest większa niż 1024 i nie przekroczyliśmy zakresu sufiksów
+        while (count >= 1024.0L && suffixIndex < (sizeof(suffixes) / sizeof(suffixes[0])) - 1)
+        {
+            count /= 1024.0L;
+            ++suffixIndex;
+        }
+
+        std::ostringstream oss;
+        // jeśli wartość jest całkowita (np. 1.00), można nie pokazywać miejsc po przecinku,
+        // tutaj pokażę z jednym miejscem po przecinku (lub więcej jeśli chcesz):
+        oss << std::fixed << std::setprecision(1) << count << " " << suffixes[suffixIndex];
+        return oss.str();
     }
 
     namespace str
