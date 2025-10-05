@@ -184,25 +184,7 @@ namespace CORE
         }
     }
 
-    std::string humanReadableBytes(uint64_t bytes)
-    {
-        const char* suffixes[] = {"B", "KB", "MB", "GB", "TB", "PB", "EB"};
-        size_t suffixIndex = 0;
-        long double count = bytes;
-
-        // dopóki wartość jest większa niż 1024 i nie przekroczyliśmy zakresu sufiksów
-        while (count >= 1024.0L && suffixIndex < (sizeof(suffixes) / sizeof(suffixes[0])) - 1)
-        {
-            count /= 1024.0L;
-            ++suffixIndex;
-        }
-
-        std::ostringstream oss;
-        // jeśli wartość jest całkowita (np. 1.00), można nie pokazywać miejsc po przecinku,
-        // tutaj pokażę z jednym miejscem po przecinku (lub więcej jeśli chcesz):
-        oss << std::fixed << std::setprecision(1) << count << " " << suffixes[suffixIndex];
-        return oss.str();
-    }
+    std::string humanReadableBytes(uint64_t bytes);
 
     namespace str
     {
@@ -210,7 +192,7 @@ namespace CORE
         std::string to_lower_case(const std::string& input);
     }; // namespace str
 
-    struct vec
+    namespace vec
     {
         template <typename T>
         static void print_on_by_one(const std::vector<T>& vec)
