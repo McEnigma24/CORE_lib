@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.18)
+cmake_minimum_required(VERSION 4.2)
 project(MyProject LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 20)
@@ -39,9 +39,20 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fopenmp -g -Wfatal-errors -Werror=unini
 
 set(CONST_TARGET_NAME "core")
 
-option(CORE___BUILD_LIBRARY "Build library instead of executable" ON) # default value - could be overwritten by provided FLAG
+# Flagi buildu deklarujemy tylko wtedy, gdy to MY jesteśmy korzeniem drzewa CMake.
+# option() zawsze ląduje w globalnym cache, więc podprojekt deklarujący taką samą
+# nazwę dzieliłby wpis z projektem nadrzędnym - dlatego dawniej trzeba było prefiksować
+# je per projekt (CORE___, TEMPLATE___). Guard robi to samo bez zmiany nazw.
+# Wciągnięty przez FetchContent core jest zawsze biblioteką i nie odpala swoich testów.
+if(PROJECT_IS_TOP_LEVEL)
+    option(BUILD_LIBRARY "Build library instead of executable" ON) # default value - could be overwritten by provided FLAG
+    option(CTEST_ACTIVE "Testing is active" OFF)                   # default value - could be overwritten by provided FLAG
+else()
+    set(BUILD_LIBRARY ON)
+    set(CTEST_ACTIVE OFF)
+endif()
 
-if(CORE___BUILD_LIBRARY)
+if(BUILD_LIBRARY)
     message(WARNING "Building library")
     
     set(TARGET_NAME "${CONST_TARGET_NAME}")
@@ -64,9 +75,7 @@ else()
     # )
 endif()
 
-option(CORE___TEST_ACTIVE "Testing is active" OFF)  # default value - could be overwritten by provided FLAG
-
-if(CORE___TEST_ACTIVE)
+if(CTEST_ACTIVE)
     message(WARNING "TESTING...")
     # Włączenie testów
     enable_testing()
